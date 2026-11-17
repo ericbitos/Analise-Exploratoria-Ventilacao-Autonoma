@@ -17,7 +17,7 @@ def create_app() -> Dash:
         update_title=None,
         assets_folder=str(ASSETS_DIR),
     )
-    app.layout = layout
+    app.layout = layout()
     registrar(app)
     return app
 

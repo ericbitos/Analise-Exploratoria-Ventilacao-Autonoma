@@ -8,6 +8,10 @@ Projeto Integrador 3.
 
 ## O que o dashboard mostra
 
+- **Projeto** — apresentação do experimento: contexto, pergunta central,
+  pipeline de coleta (Arduino + DHT11 → script Python → PostgreSQL), estrutura
+  da tabela `ProjetoIntegrador3.leituras`, boas práticas de acesso e os
+  resultados principais com atalhos para as demais abas.
 - **Visão geral** — indicadores principais (leituras, duração, pico, médias por
   estado, correlação), série de temperatura com as fases do experimento e
   resumo por fase.
@@ -25,6 +29,29 @@ As fases do jogo (abertura às 17:55:56, pico às 17:58:38 e desligamento do
 cooler às 18:01:04) são derivadas das leituras e do contexto experimental
 informado na apresentação. A tabela registra apenas o estado do cooler.
 
+## Apresentação
+
+O dashboard é a própria apresentação e fica disponível em um link público:
+
+**https://analise-ventilacao-autonoma.onrender.com**
+
+A aba **Projeto** foi organizada para cobrir os quatro pontos do enunciado:
+
+| Bloco | Tempo sugerido | Conteúdo |
+|---|---:|---|
+| 1. Projeto | 30 s | Contexto, pergunta central e recorte do experimento |
+| 2. Coleta | 45 s | Arduino + DHT11, cadência, variáveis e qualidade |
+| 3. Armazenamento | 45 s | PostgreSQL, schema, tabela e acesso somente leitura |
+| 4. Resultados | 3–4 min | Principais números e navegação para os gráficos |
+
+Cada bloco tem atalhos para as abas de análise (séries temporais, comparação,
+correlações e qualidade). O roteiro completo com as notas de fala está em
+`reports/apresentacao/roteiro_apresentacao.md`, no projeto de análise original.
+
+> O plano gratuito do Render hiberna após alguns minutos sem acesso. Abra o
+> link 2–3 minutos antes de apresentar; o primeiro carregamento pode levar
+> cerca de 50 segundos.
+
 ## Estrutura
 
 ```text
@@ -37,6 +64,7 @@ informado na apresentação. A tabela registra apenas o estado do cooler.
 │   ├── figures.py            # figuras Plotly
 │   ├── components.py         # cards, tabelas e notas
 │   ├── layout.py             # layout e abas
+│   ├── presentation.py       # aba Projeto (contexto, coleta, banco, resultados)
 │   ├── callbacks.py          # interatividade
 │   └── data/leituras.csv     # snapshot dos dados
 ├── assets/style.css          # design

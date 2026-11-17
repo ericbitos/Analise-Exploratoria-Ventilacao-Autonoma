@@ -30,6 +30,7 @@ from .formatting import (
     fmt_pct,
     fmt_sinal,
 )
+from .presentation import aba_projeto
 
 
 def _linha_em(df: pd.DataFrame, timestamp: pd.Timestamp) -> pd.Series:
@@ -638,9 +639,16 @@ def layout() -> html.Div:
 
     abas = dcc.Tabs(
         id="abas",
-        value="visao",
+        value="projeto",
         className="tabs",
         children=[
+            dcc.Tab(
+                label="Projeto",
+                value="projeto",
+                className="tab",
+                selected_className="tab-selected",
+                children=aba_projeto(),
+            ),
             dcc.Tab(
                 label="Visão geral",
                 value="visao",

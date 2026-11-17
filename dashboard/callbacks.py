@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import pandas as pd
-from dash import Dash, Input, Output, State, dcc
+from dash import Dash, Input, Output, State, ctx, dcc, no_update
 from dash.exceptions import PreventUpdate
 
 from . import data, figures
@@ -99,3 +99,18 @@ def registrar(app: Dash) -> None:
         recorte["estado"] = recorte["cooler"].map(STATE_LABELS)
         conteudo = "\ufeff" + recorte.to_csv(index=False, sep=";", decimal=",")
         return dcc.send_string(conteudo, "leituras_filtradas.csv")
+
+    alvos = {
+        "projeto-ir-series": "series",
+        "projeto-ir-comparacao": "comparacao",
+        "projeto-ir-correlacoes": "correlacoes",
+        "projeto-ir-dados": "dados",
+    }
+
+    @app.callback(
+        Output("abas", "value"),
+        [Input(identificador, "n_clicks") for identificador in alvos],
+        prevent_initial_call=True,
+    )
+    def navegar(*_: int) -> object:
+        return alvos.get(ctx.triggered_id, no_update)
